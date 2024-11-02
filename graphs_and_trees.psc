@@ -15,8 +15,8 @@ Funcion grafoMatrizAdyacencia
 	Leer numeroVertices
 	
 	Escribir 'Ingrese matriz de adyacencia'
-	Para i=1 Hasta numeroVertices Con Paso 1 Hacer
-		Para j=1 Hasta numeroVertices Con Paso 1 Hacer
+	Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
+		Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
 			Leer matrizAdyacencia[i,j]
 		FinPara
 	FinPara
@@ -28,7 +28,7 @@ Funcion grafoMatrizAdyacencia
 	
 	// Mostrar matriz de adyacencia
 	Escribir Sin Saltar "     "
-	Para j=1 Hasta numeroVertices Hacer
+	Para j<-1 Hasta numeroVertices Hacer
 		Escribir Sin Saltar "  ", j, " "
 	FinPara
 	Escribir ""
@@ -153,9 +153,6 @@ Algoritmo graphs_and_trees
 		FinSi
 		
 	FinSi
-	
-	
-	
 	
 	
 	
