@@ -1,51 +1,14 @@
-// Funcion para Grafos con Matriz de Adyacencia
-Funcion grafoMatrizAdyacencia
-	Definir numeroVertices Como Entero
-	Dimension matrizAdyacencia[100,100]
+Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
 	Definir dirigido Como Logico
 	Definir Completo Como Logico
-	
+	Definir simple 	 Como Logico
 	
 	dirigido := Falso
 	completo := Verdadero
-	simple := Verdadero
+	simple 	 := Verdadero
 	
-	
-	Escribir 'Ingrese numero de vertices'
-	Leer numeroVertices
-	
-	Escribir 'Ingrese matriz de adyacencia'
-	Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
-		Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
-			Leer matrizAdyacencia[i,j]
-		FinPara
-	FinPara
-	
-	Escribir 'Si salimos'
-	
-	// Imprimir la matriz con formato
-	Escribir "Matriz de Adyacencia:"
-	
-	// Mostrar matriz de adyacencia
-	Escribir Sin Saltar "     "
-	Para j<-1 Hasta numeroVertices Hacer
-		Escribir Sin Saltar "  ", j, " "
-	FinPara
-	Escribir ""
-	
-	
-	Para i=1 Hasta numeroVertices Hacer
-		Escribir Sin Saltar i, " |"
-		Para j=1 Hasta numeroVertices Hacer
-			Escribir Sin Saltar "  ", matrizAdyacencia[i, j], " "
-		FinPara
-		Escribir ""
-	FinPara
-	
-
 	Para i=1 Hasta numeroVertices Hacer
 		Para j=1 Hasta  numeroVertices Hacer
-			
 			
 			Si matrizAdyacencia[i,j] <> matrizAdyacencia[j,i] Entonces
 				dirigido := Verdadero
@@ -59,10 +22,6 @@ Funcion grafoMatrizAdyacencia
 				simple = Falso
 			FinSi
 			
-			
-			
-			
-			
 		FinPara
 	FinPara
 	
@@ -72,10 +31,53 @@ Funcion grafoMatrizAdyacencia
 	
 	Escribir '¿El grafo es simple? - Respuesta :' simple
 	
+	// TODO terminar la definicion del tipo de grafo
+	tipoGrafo  := 'Definir' 	
 	
 FinFuncion
 
 
+// Funcion para mostrar la matriz de adyacencia
+Funcion mostrarMatrizAdyacencia (matrizAdyacencia, numeroVertices)
+	Escribir "Matriz de ingresada"
+	
+	Escribir Sin Saltar "     "
+	Para j<-1 Hasta numeroVertices Hacer
+		Escribir Sin Saltar "  ", j, " "
+	FinPara
+	Escribir ""
+	
+	Para i=1 Hasta numeroVertices Hacer
+		Escribir Sin Saltar i, " |"
+		Para j=1 Hasta numeroVertices Hacer
+			Escribir Sin Saltar "  ", matrizAdyacencia[i, j], " "
+		FinPara
+		Escribir ""
+	FinPara
+FinFuncion
+
+
+// Funcion para Grafos con Matriz de Adyacencia
+Funcion grafoMatrizAdyacencia
+	Dimension matrizAdyacencia[100,100]
+	Definir numeroVertices Como Entero
+	Definir tipoGrafo Como Caracter
+	
+	Escribir 'Ingrese numero de vertices'
+	Leer numeroVertices
+	
+	Escribir 'Ingrese matriz de adyacencia'
+	Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
+		Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
+			Leer matrizAdyacencia[i,j]
+		FinPara
+	FinPara
+	
+	mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
+	
+	tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+	
+FinFuncion
 
 
 // Funcion para solamente mostrar el menu, debe ser llamada siempre antes de seleccionarOpcionMenu
@@ -140,23 +142,22 @@ Algoritmo graphs_and_trees
 		mostrarOpcionSeleccionada(opcionSubMenu)
 	SiNo  
 		
+		//TODO se debe tener la opcion para arboles aca
+		
 	FinSi
 	
 	
-	// Si el usuario escogio Grafo y con Grafo
+	// Si el usuario escogio Grafo
 	Si opcionMenu = 1 y opcionSubMenu = 1 Entonces
 		Escribir 'Recibire un grafo'
+		//TODO se debe meter la funcion para recibir un grafo
 		
 	SiNo Si opcionMenu = 1 y opcionSubMenu = 2 Entonces
+			
 			Escribir 'Recibire una matriz de abyacencia'
 			grafoMatrizAdyacencia
+			
 		FinSi
-		
 	FinSi
 	
-	
-	
-	
-	
 FinAlgoritmo
-
