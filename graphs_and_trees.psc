@@ -1,6 +1,7 @@
+// Funcion que permite verificar o validar el tipo de grafo, el recibe una matriz de adyacencia
 Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
 	Definir dirigido Como Logico
-	Definir Completo Como Logico
+	Definir completo Como Logico
 	Definir simple 	 Como Logico
 	
 	dirigido := Falso
@@ -15,11 +16,11 @@ Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVe
 			FinSi
 			
 			Si i <> j y matrizAdyacencia[i,j] = 0 Entonces
-				completo = Falso
+				completo := Falso
 			FinSi
 			
 			Si i = j y matrizAdyacencia[i,j] > 0 Entonces
-				simple = Falso
+				simple := Falso
 			FinSi
 			
 		FinPara
@@ -66,10 +67,13 @@ Funcion grafoMatrizAdyacencia
 	Escribir 'Ingrese numero de vertices'
 	Leer numeroVertices
 	
-	Escribir 'Ingrese matriz de adyacencia'
-	Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
-		Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
-			Leer matrizAdyacencia[i,j]
+	Escribir 'Ingrese matriz de adyacencia (solo 0 o 1)'
+    Para i <- 1 Hasta numeroVertices Hacer
+		Para j <- 1 Hasta  numeroVertices Hacer
+			Repetir
+				Escribir 'Ingrese el valor para posición [', i, ',', j, '] (0 o 1):'
+				Leer matrizAdyacencia[i,j]
+			Hasta Que matrizAdyacencia[i,j] = 0 o matrizAdyacencia[i,j] = 1
 		FinPara
 	FinPara
 	
@@ -159,5 +163,5 @@ Algoritmo graphs_and_trees
 			
 		FinSi
 	FinSi
-	
+
 FinAlgoritmo
