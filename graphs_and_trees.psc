@@ -26,11 +26,11 @@ Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVe
 		FinPara
 	FinPara
 	
-	Escribir '?El grafo es dirigido? - Respuesta :' dirigido
+	Escribir '¿El grafo es dirigido? - Respuesta :' dirigido
 	
-	Escribir '?El grafo es completo? - Respuesta :' completo
+	Escribir '¿El grafo es completo? - Respuesta :' completo
 	
-	Escribir '?El grafo es simple? - Respuesta :' simple
+	Escribir '¿El grafo es simple? - Respuesta :' simple
 	
 	// TODO terminar la definicion del tipo de grafo
 	tipoGrafo  := 'Definir' 	
