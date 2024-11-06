@@ -1,4 +1,42 @@
+
+
+
+// Funcion para Grafos con Matriz de Adyacencia
+Funcion recibirGrafoTexto
+	Dimension matrizAdyacencia[100,100]
+	Definir numeroVertices, numeroAristas Como Entero
+	Definir tipoGrafo Como Caracter
+	
+	Escribir 'Ingrese numero de vertices: '
+	Leer numeroVertices
+	Escribir 'Ingrese numero de aristas: '
+	Leer numeroAristas
+	
+	Mientras numeroAristas > 0 Hacer
+		Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
+			Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
+				Escribir "El Vertice número: ", i , " tiene arista con el Vertice número: ", j , "?" 
+				Escribir "Escribe 1 para Sí o 0 para No:"
+				Leer entradaConexion
+				Si entradaConexion <> matrizAdyacencia[j,i]   Entonces
+					matrizAdyacencia[i,j] = entradaConexion
+					numeroAristas = numeroAristas - 1
+				FinSi
+			
+			FinPara
+		FinPara
+	Fin Mientras
+	
+	
+	mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
+	
+	tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+	
+FinFuncion
+
+
 Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+	
 	Definir dirigido Como Logico
 	Definir Completo Como Logico
 	Definir simple 	 Como Logico
@@ -151,6 +189,7 @@ Algoritmo graphs_and_trees
 	Si opcionMenu = 1 y opcionSubMenu = 1 Entonces
 		Escribir 'Recibire un grafo'
 		//TODO se debe meter la funcion para recibir un grafo
+			recibirGrafoTexto
 		
 	SiNo Si opcionMenu = 1 y opcionSubMenu = 2 Entonces
 			
