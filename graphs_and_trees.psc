@@ -1,3 +1,361 @@
+
+// Subproceso principal para manejar árboles
+SubProceso manejarArboles
+    Dimension matrizArbol[100,100]
+    Definir n, opcion, vertice, i, j, padre Como Entero
+    Definir salir Como Logico
+    
+    // Inicializar matriz
+    Para i <- 1 Hasta 100 Con Paso 1 Hacer
+        Para j <- 1 Hasta 100 Con Paso 1 Hacer
+            matrizArbol[i,j] <- 0
+        FinPara
+    FinPara
+    
+    // Recibir estructura del árbol
+    Escribir "Ingrese el número de nodos del árbol:"
+    Leer n
+    
+    // Leer las relaciones padre-hijo
+    Para i <- 1 Hasta n Con Paso 1 Hacer
+        Escribir "Para el nodo ", i, " ingrese su padre (0 si es raíz):"
+        Leer padre
+        Si padre >= 0 Y padre <= n Entonces
+            Si padre > 0 Entonces
+                matrizArbol[padre,i] <- 1
+            FinSi
+        Sino
+            Escribir "Padre no válido"
+            i <- i - 1
+        FinSi
+    FinPara
+    
+    salir <- Falso
+    Mientras NO salir Hacer
+        mostrarMenuArboles
+        Leer opcion
+        
+        Segun opcion Hacer
+            1:
+                mostrarRaiz(matrizArbol, n)
+            2:
+                mostrarPadreVertice(matrizArbol, n)
+            3:
+                mostrarHijosVertice(matrizArbol, n)
+            4:
+                mostrarHermanosVertice(matrizArbol, n)
+            5:
+                mostrarAntecesoresVertice(matrizArbol, n)
+            6:
+                mostrarDescendientesVertice(matrizArbol, n)
+            7:
+                mostrarVerticesInternos(matrizArbol, n)
+            8:
+                mostrarHojasArbol(matrizArbol, n)
+            9:
+                mostrarSubarbol(matrizArbol, n)
+            0:
+                salir <- Verdadero
+            De Otro Modo:
+                Escribir "Opción no válida"
+        FinSegun
+        
+        Si NO salir Entonces
+            Escribir "Presione Enter para continuar..."
+            Esperar Tecla
+        FinSi
+    FinMientras
+FinSubProceso
+
+// Mostrar menú de árboles
+SubProceso mostrarMenuArboles
+    Escribir "MENU DE ÁRBOLES"
+    Escribir "-----------------"
+    Escribir "1. Mostrar raíz del árbol"
+    Escribir "2. Mostrar padre de un vértice"
+    Escribir "3. Mostrar hijos de un vértice"
+    Escribir "4. Mostrar hermanos de un vértice"
+    Escribir "5. Mostrar antecesores de un vértice"
+    Escribir "6. Mostrar descendientes de un vértice"
+    Escribir "7. Mostrar vértices internos"
+    Escribir "8. Mostrar hojas del árbol"
+    Escribir "9. Mostrar subárbol"
+    Escribir "0. Volver al menú principal"
+FinSubProceso
+
+// Mostrar raíz del árbol
+SubProceso mostrarRaiz(matrizArbol Por Referencia, n)
+    Definir i, j Como Entero
+    Definir padre Como Logico
+    Definir raizEncontrada Como Logico
+    raizEncontrada <- Falso
+    
+    Para i <- 1 Hasta n Con Paso 1 Hacer
+        padre <- Falso
+        Para j <- 1 Hasta n Con Paso 1 Hacer
+            Si matrizArbol[j,i] = 1 Entonces
+                padre <- Verdadero
+            FinSi
+        FinPara
+        Si NO padre Entonces
+            Escribir "La raíz del árbol es: ", i
+            raizEncontrada <- Verdadero
+        FinSi
+    FinPara
+    
+    Si NO raizEncontrada Entonces
+        Escribir "No se encontró la raíz del árbol"
+    FinSi
+FinSubProceso
+
+// Mostrar padre de un vértice
+SubProceso mostrarPadreVertice(matrizArbol Por Referencia, n)
+    Definir vertice, i Como Entero
+    Definir padreEncontrado Como Logico
+    
+    Escribir "Ingrese el número del vértice:"
+    Leer vertice
+    
+    Si vertice > 0 Y vertice <= n Entonces
+        padreEncontrado <- Falso
+        Para i <- 1 Hasta n Con Paso 1 Hacer
+            Si matrizArbol[i,vertice] = 1 Entonces
+                Escribir "El padre del vértice ", vertice, " es: ", i
+                padreEncontrado <- Verdadero
+            FinSi
+        FinPara
+        
+        Si NO padreEncontrado Entonces
+            Escribir "El vértice es raíz, no tiene padre"
+        FinSi
+    Sino
+        Escribir "Vértice no válido"
+    FinSi
+FinSubProceso
+
+// Mostrar hijos de un vértice
+SubProceso mostrarHijosVertice(matrizArbol Por Referencia, n)
+    Definir vertice, i Como Entero
+    Definir tieneHijos Como Logico
+    
+    Escribir "Ingrese el número del vértice:"
+    Leer vertice
+    
+    Si vertice > 0 Y vertice <= n Entonces
+        tieneHijos <- Falso
+        Escribir "Hijos del vértice ", vertice, ":"
+        Para i <- 1 Hasta n Con Paso 1 Hacer
+            Si matrizArbol[vertice,i] = 1 Entonces
+                Escribir i
+                tieneHijos <- Verdadero
+            FinSi
+        FinPara
+        
+        Si NO tieneHijos Entonces
+            Escribir "El vértice no tiene hijos"
+        FinSi
+    Sino
+        Escribir "Vértice no válido"
+    FinSi
+FinSubProceso
+
+// Mostrar hermanos de un vértice
+SubProceso mostrarHermanosVertice(matrizArbol Por Referencia, n)
+    Definir vertice, padre, i Como Entero
+    Definir tieneHermanos Como Logico
+    
+    Escribir "Ingrese el número del vértice:"
+    Leer vertice
+    
+    Si vertice > 0 Y vertice <= n Entonces
+        padre <- 0
+        Para i <- 1 Hasta n Con Paso 1 Hacer
+            Si matrizArbol[i,vertice] = 1 Entonces
+                padre <- i
+            FinSi
+        FinPara
+        
+        Si padre = 0 Entonces
+            Escribir "El vértice es raíz, no tiene hermanos"
+        Sino
+            tieneHermanos <- Falso
+            Escribir "Hermanos del vértice ", vertice, ":"
+            Para i <- 1 Hasta n Con Paso 1 Hacer
+                Si matrizArbol[padre,i] = 1 Y i <> vertice Entonces
+                    Escribir i
+                    tieneHermanos <- Verdadero
+                FinSi
+            FinPara
+            
+            Si NO tieneHermanos Entonces
+                Escribir "El vértice no tiene hermanos"
+            FinSi
+        FinSi
+    Sino
+        Escribir "Vértice no válido"
+    FinSi
+FinSubProceso
+
+// Mostrar antecesores de un vértice
+SubProceso mostrarAntecesoresVertice(matrizArbol Por Referencia, n)
+    Definir vertice, actual, i Como Entero
+    Definir tieneAntecesores Como Logico
+    
+    Escribir "Ingrese el número del vértice:"
+    Leer vertice
+    
+    Si vertice > 0 Y vertice <= n Entonces
+        tieneAntecesores <- Falso
+        actual <- vertice
+        Escribir "Antecesores del vértice ", vertice, ":"
+        
+        Mientras actual <> 0 Hacer
+            Para i <- 1 Hasta n Con Paso 1 Hacer
+                Si matrizArbol[i,actual] = 1 Entonces
+                    Escribir i
+                    actual <- i
+                    tieneAntecesores <- Verdadero
+                    i <- n
+                Sino
+                    Si i = n Entonces
+                        actual <- 0
+                    FinSi
+                FinSi
+            FinPara
+        FinMientras
+        
+        Si NO tieneAntecesores Entonces
+            Escribir "El vértice es raíz, no tiene antecesores"
+        FinSi
+    Sino
+        Escribir "Vértice no válido"
+    FinSi
+FinSubProceso
+
+// Mostrar descendientes de un vértice
+SubProceso mostrarDescendientesVertice(matrizArbol Por Referencia, n)
+    Dimension visitados[100]
+    Definir vertice, i Como Entero
+    
+    Escribir "Ingrese el número del vértice:"
+    Leer vertice
+    
+    Si vertice > 0 Y vertice <= n Entonces
+        Para i <- 1 Hasta n Con Paso 1 Hacer
+            visitados[i] <- Falso
+        FinPara
+        
+        Escribir "Descendientes del vértice ", vertice, ":"
+        visitados[vertice] <- Verdadero
+        buscarDescendientes(matrizArbol, n, vertice, visitados)
+    Sino
+        Escribir "Vértice no válido"
+    FinSi
+FinSubProceso
+
+// Subproceso auxiliar para buscar descendientes
+SubProceso buscarDescendientes(matrizArbol Por Referencia, n, vertice, visitados Por Referencia)
+    Definir i Como Entero
+    
+    Para i <- 1 Hasta n Con Paso 1 Hacer
+        Si matrizArbol[vertice,i] = 1 Y NO visitados[i] Entonces
+            Escribir i
+            visitados[i] <- Verdadero
+            buscarDescendientes(matrizArbol, n, i, visitados)
+        FinSi
+    FinPara
+FinSubProceso
+
+// Mostrar vértices internos
+SubProceso mostrarVerticesInternos(matrizArbol Por Referencia, n)
+    Definir i, j Como Entero
+    Definir tieneHijos Como Logico
+    Definir hayInternos Como Logico
+    hayInternos <- Falso
+    
+    Escribir "Vértices internos del árbol:"
+    Para i <- 1 Hasta n Con Paso 1 Hacer
+        tieneHijos <- Falso
+        Para j <- 1 Hasta n Con Paso 1 Hacer
+            Si matrizArbol[i,j] = 1 Entonces
+                tieneHijos <- Verdadero
+                j <- n
+            FinSi
+        FinPara
+        
+        Si tieneHijos Entonces
+            Escribir i
+            hayInternos <- Verdadero
+        FinSi
+    FinPara
+    
+    Si NO hayInternos Entonces
+        Escribir "No hay vértices internos"
+    FinSi
+FinSubProceso
+
+// Mostrar hojas del árbol
+SubProceso mostrarHojasArbol(matrizArbol Por Referencia, n)
+    Definir i, j Como Entero
+    Definir esHoja Como Logico
+    Definir hayHojas Como Logico
+    hayHojas <- Falso
+    
+    Escribir "Hojas del árbol:"
+    Para i <- 1 Hasta n Con Paso 1 Hacer
+        esHoja <- Verdadero
+        Para j <- 1 Hasta n Con Paso 1 Hacer
+            Si matrizArbol[i,j] = 1 Entonces
+                esHoja <- Falso
+                j <- n
+            FinSi
+        FinPara
+        
+        Si esHoja Y tienepadre(matrizArbol, n, i) Entonces
+            Escribir i
+            hayHojas <- Verdadero
+        FinSi
+    FinPara
+    
+    Si NO hayHojas Entonces
+        Escribir "No hay hojas en el árbol"
+    FinSi
+FinSubProceso
+
+// Función auxiliar para verificar si un vértice tiene padre
+SubProceso tiene <- tienepadre(matrizArbol Por Referencia, n, vertice)
+    Definir tiene Como Logico
+    Definir i Como Entero
+    tiene <- Falso
+    
+    Para i <- 1 Hasta n Con Paso 1 Hacer
+        Si matrizArbol[i,vertice] = 1 Entonces
+            tiene <- Verdadero
+        FinSi
+    FinPara
+FinSubProceso
+
+// Mostrar subárbol
+SubProceso mostrarSubarbol(matrizArbol Por Referencia, n)
+    Dimension visitados[100]
+    Definir vertice, i Como Entero
+    
+    Escribir "Ingrese el vértice raíz del subárbol:"
+    Leer vertice
+    
+    Si vertice > 0 Y vertice <= n Entonces
+        Para i <- 1 Hasta n Con Paso 1 Hacer
+            visitados[i] <- Falso
+        FinPara
+        
+        Escribir "Subárbol con raíz en el vértice ", vertice, ":"
+        Escribir vertice, " (raíz del subárbol)"
+        buscarDescendientes(matrizArbol, n, vertice, visitados)
+    Sino
+        Escribir "Vértice no válido"
+    FinSi
+FinSubProceso
+
 // Función para verificar si existe un camino hamiltoniano
 Funcion hallarCaminosHamiltonianos(matrizAdyacencia, numeroVertices)
     Dimension visitados[100]  // Array para marcar vértices visitados
@@ -434,8 +792,7 @@ Algoritmo graphs_and_trees
 		opcionSubMenu := leerOpcion(opcionSubMenu)
 		mostrarOpcionSeleccionada(opcionSubMenu)
 	SiNo  
-		
-		//TODO se debe tener la opcion para arboles aca
+		manejarArboles()
 		
 	FinSi
 	
