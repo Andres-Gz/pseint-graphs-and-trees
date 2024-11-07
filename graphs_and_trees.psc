@@ -681,8 +681,7 @@ Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVe
 	Definir dirigido Como Logico
 	Definir completo Como Logico
 	Definir simple 	 Como Logico
-	Dimension grados[100]
-	Definir gradoGrafo Como Entero
+	
 	
 	dirigido := Falso
 	completo := Verdadero
