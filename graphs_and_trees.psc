@@ -1,9 +1,9 @@
-
 // Subproceso principal para manejar árboles
 SubProceso manejarArboles
     Dimension matrizArbol[100,100]
-    Definir n, opcion, vertice, i, j, padre Como Entero
-    Definir salir Como Logico
+    Definir n, opcion, vertice, i, j, padre, contadorRaices Como Entero
+    Definir salir, datosValidos Como Logico
+    Definir entradaValida Como Logico
     
     // Inicializar matriz
     Para i <- 1 Hasta 100 Con Paso 1 Hacer
@@ -12,59 +12,102 @@ SubProceso manejarArboles
         FinPara
     FinPara
     
-    // Recibir estructura del árbol
-    Escribir "Ingrese el número de nodos del árbol:"
-    Leer n
-    
-    // Leer las relaciones padre-hijo
-    Para i <- 1 Hasta n Con Paso 1 Hacer
-        Escribir "Para el nodo ", i, " ingrese su padre (0 si es raíz):"
-        Leer padre
-        Si padre >= 0 Y padre <= n Entonces
+    datosValidos <- Falso
+    Mientras NO datosValidos Hacer
+        // Recibir estructura del árbol
+        Repetir
+            Escribir "Ingrese el número de nodos del árbol (debe ser mayor que 0):"
+            Leer n
+        Hasta Que n > 0
+        
+        // Leer las relaciones padre-hijo
+        contadorRaices <- 0
+        entradaValida <- Verdadero
+        
+        Para i <- 1 Hasta n Con Paso 1 Hacer
+            Repetir
+                entradaValida <- Verdadero
+                Escribir "Para el nodo ", i, " ingrese su padre (0 si es raíz):"
+                Leer padre
+                
+                // Validar que el padre sea válido
+                Si padre < 0 O padre > n Entonces
+                    Escribir "Error: El padre debe estar entre 0 y ", n
+                    entradaValida <- Falso
+                Sino
+                    // Validar que no sea su propio padre
+                    Si padre = i Entonces
+                        Escribir "Error: Un nodo no puede ser su propio padre"
+                        entradaValida <- Falso
+                    Sino
+                        // Contar raíces y validar
+                        Si padre = 0 Entonces
+                            contadorRaices <- contadorRaices + 1
+                            Si contadorRaices > 1 Entonces
+                                Escribir "Error: Ya existe una raíz. Un árbol solo puede tener una raíz"
+                                entradaValida <- Falso
+                                contadorRaices <- contadorRaices - 1
+                            FinSi
+                        FinSi
+                    FinSi
+                FinSi
+            Hasta Que entradaValida
+            
             Si padre > 0 Entonces
                 matrizArbol[padre,i] <- 1
             FinSi
-        Sino
-            Escribir "Padre no válido"
-            i <- i - 1
-        FinSi
-    FinPara
-    
-    salir <- Falso
-    Mientras NO salir Hacer
-        mostrarMenuArboles
-        Leer opcion
+        FinPara
         
-        Segun opcion Hacer
-            1:
-                mostrarRaiz(matrizArbol, n)
-            2:
-                mostrarPadreVertice(matrizArbol, n)
-            3:
-                mostrarHijosVertice(matrizArbol, n)
-            4:
-                mostrarHermanosVertice(matrizArbol, n)
-            5:
-                mostrarAntecesoresVertice(matrizArbol, n)
-            6:
-                mostrarDescendientesVertice(matrizArbol, n)
-            7:
-                mostrarVerticesInternos(matrizArbol, n)
-            8:
-                mostrarHojasArbol(matrizArbol, n)
-            9:
-                mostrarSubarbol(matrizArbol, n)
-            0:
-                salir <- Verdadero
-            De Otro Modo:
-                Escribir "Opción no válida"
-        FinSegun
-        
-        Si NO salir Entonces
+        // Validar que exista exactamente una raíz
+        Si contadorRaices = 0 Entonces
+            Escribir "Error: El árbol debe tener exactamente una raíz"
+            Escribir "Debe volver a ingresar los datos del árbol"
             Escribir "Presione Enter para continuar..."
             Esperar Tecla
+        Sino
+            datosValidos <- Verdadero
         FinSi
     FinMientras
+    
+    // Solo continuar con el menú si los datos son válidos
+    Si datosValidos Entonces
+        // Continuar con el menú de operaciones
+        salir <- Falso
+        Mientras NO salir Hacer
+            mostrarMenuArboles
+            Leer opcion
+            
+            Segun opcion Hacer
+                1:
+                    mostrarRaiz(matrizArbol, n)
+                2:
+                    mostrarPadreVertice(matrizArbol, n)
+                3:
+                    mostrarHijosVertice(matrizArbol, n)
+                4:
+                    mostrarHermanosVertice(matrizArbol, n)
+                5:
+                    mostrarAntecesoresVertice(matrizArbol, n)
+                6:
+                    mostrarDescendientesVertice(matrizArbol, n)
+                7:
+                    mostrarVerticesInternos(matrizArbol, n)
+                8:
+                    mostrarHojasArbol(matrizArbol, n)
+                9:
+                    mostrarSubarbol(matrizArbol, n)
+                0:
+                    salir <- Verdadero
+                De Otro Modo:
+                    Escribir "Opción no válida"
+            FinSegun
+            
+            Si NO salir Entonces
+                Escribir "Presione Enter para continuar..."
+                Esperar Tecla
+            FinSi
+        FinMientras
+    FinSi
 FinSubProceso
 
 // Mostrar menú de árboles
