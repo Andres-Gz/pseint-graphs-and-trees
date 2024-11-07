@@ -1,6 +1,6 @@
-// Función para verificar si existe un camino hamiltoniano
+// Funciï¿½n para verificar si existe un camino hamiltoniano
 Funcion hallarCaminosHamiltonianos(matrizAdyacencia, numeroVertices)
-    Dimension visitados[100]  // Array para marcar vértices visitados
+    Dimension visitados[100]  // Array para marcar vï¿½rtices visitados
     Dimension caminoActual[100]  // Array para almacenar el camino actual
     Definir longitudCamino Como Entero
     Definir encontroCamino Como Logico
@@ -12,7 +12,7 @@ Funcion hallarCaminosHamiltonianos(matrizAdyacencia, numeroVertices)
         visitados[i] <- Falso
     FinPara
     
-    // Intentar encontrar camino hamiltoniano desde cada vértice
+    // Intentar encontrar camino hamiltoniano desde cada vï¿½rtice
     Para verticeInicial <- 1 Hasta numeroVertices Con Paso 1 Hacer
         // Reiniciar visitados
         Para i <- 1 Hasta numeroVertices Con Paso 1 Hacer
@@ -32,7 +32,7 @@ Funcion hallarCaminosHamiltonianos(matrizAdyacencia, numeroVertices)
 FinFuncion
 
 SubProceso buscarCaminoHamiltoniano(matrizAdyacencia, numeroVertices, verticeActual, visitados, caminoActual, longitudCamino, encontroCamino Por Referencia)
-    // Si ya visitamos todos los vértices, encontramos un camino hamiltoniano
+    // Si ya visitamos todos los vï¿½rtices, encontramos un camino hamiltoniano
     Si longitudCamino = numeroVertices Entonces
         encontroCamino <- Verdadero
         Escribir Sin Saltar "Camino hamiltoniano encontrado: "
@@ -56,19 +56,19 @@ SubProceso buscarCaminoHamiltoniano(matrizAdyacencia, numeroVertices, verticeAct
     FinSi
 FinSubProceso
 
-// Función para verificar si existe un camino euleriano
+// Funciï¿½n para verificar si existe un camino euleriano
 Funcion hallarCaminosEulerianos(matrizAdyacencia, numeroVertices)
     Definir gradoImpar Como Entero
     Dimension grados[100]
     gradoImpar <- 0
     
-    // Calcular grado de cada vértice
+    // Calcular grado de cada vï¿½rtice
     Para i <- 1 Hasta numeroVertices Con Paso 1 Hacer
         grados[i] <- 0
         Para j <- 1 Hasta numeroVertices Con Paso 1 Hacer
             grados[i] <- grados[i] + matrizAdyacencia[i,j]
         FinPara
-        // Contar vértices con grado impar
+        // Contar vï¿½rtices con grado impar
         Si grados[i] MOD 2 <> 0 Entonces
             gradoImpar <- gradoImpar + 1
         FinSi
@@ -81,11 +81,11 @@ Funcion hallarCaminosEulerianos(matrizAdyacencia, numeroVertices)
         encontrarCicloEuleriano(matrizAdyacencia, numeroVertices, 1)
     Sino Si gradoImpar = 2 Entonces
             Escribir "El grafo tiene un camino euleriano (camino abierto)"
-            // Encontrar vértice inicial (uno de los vértices con grado impar)
+            // Encontrar vï¿½rtice inicial (uno de los vï¿½rtices con grado impar)
             Para i <- 1 Hasta numeroVertices Con Paso 1 Hacer
                 Si grados[i] MOD 2 <> 0 Entonces
                     encontrarCicloEuleriano(matrizAdyacencia, numeroVertices, i)
-                    i <- numeroVertices  // Salir del ciclo después de encontrar el primer camino
+                    i <- numeroVertices  // Salir del ciclo despuï¿½s de encontrar el primer camino
                 FinSi
             FinPara
         Sino
@@ -96,7 +96,7 @@ FinFuncion
 
 SubProceso encontrarCicloEuleriano(matrizAdyacencia, numeroVertices, verticeInicial)
     Dimension copiaMatriz[100,100]
-    Dimension camino[1000]  // Array más grande para almacenar el camino
+    Dimension camino[1000]  // Array mï¿½s grande para almacenar el camino
     Definir longitudCamino Como Entero
     longitudCamino <- 0
     
@@ -133,13 +133,13 @@ SubProceso encontrarCaminoEulerianoRecursivo(copiaMatriz, numeroVertices, vertic
         FinSi
     FinPara
     
-    // Agregar vértice actual al camino
+    // Agregar vï¿½rtice actual al camino
     longitudCamino <- longitudCamino + 1
     camino[longitudCamino] <- verticeActual
 FinSubProceso
 
 Funcion hallarCaminos(matrizAdyacencia, numeroVertices)
-    Dimension visitados[100]  // Array para marcar vértices visitados
+    Dimension visitados[100]  // Array para marcar vï¿½rtices visitados
     Dimension caminoActual[100]  // Array para almacenar el camino actual
     Definir longitudCamino Como Entero
     longitudCamino <- 0
@@ -149,7 +149,7 @@ Funcion hallarCaminos(matrizAdyacencia, numeroVertices)
         visitados[i] <- Falso
     FinPara
     
-    // Buscar caminos desde cada vértice
+    // Buscar caminos desde cada vï¿½rtice
     Para verticeInicial <- 1 Hasta numeroVertices Con Paso 1 Hacer
         Para verticeFinal <- 1 Hasta numeroVertices Con Paso 1 Hacer
             Si verticeInicial <> verticeFinal Entonces
@@ -158,7 +158,7 @@ Funcion hallarCaminos(matrizAdyacencia, numeroVertices)
                     visitados[i] <- Falso
                 FinPara
                 
-                // Iniciar búsqueda de camino
+                // Iniciar bï¿½squeda de camino
                 longitudCamino <- 0
                 caminoActual[longitudCamino + 1] <- verticeInicial
                 longitudCamino <- longitudCamino + 1
@@ -171,12 +171,12 @@ Funcion hallarCaminos(matrizAdyacencia, numeroVertices)
     FinPara
 FinFuncion
 
-// Función auxiliar recursiva para encontrar caminos
+// Funciï¿½n auxiliar recursiva para encontrar caminos
 SubProceso buscarCaminosRecursivo(matrizAdyacencia, numeroVertices, verticeActual, verticeFinal, visitados, caminoActual, longitudCamino)
     Definir imprimirCamino Como Logico
     imprimirCamino <- Falso
     
-    // Si llegamos al vértice final, imprimimos el camino
+    // Si llegamos al vï¿½rtice final, imprimimos el camino
     Si verticeActual = verticeFinal Entonces
         imprimirCamino <- Verdadero
     FinSi
@@ -191,7 +191,7 @@ SubProceso buscarCaminosRecursivo(matrizAdyacencia, numeroVertices, verticeActua
         FinPara
         Escribir ""
     SiNo
-        // Explorar todos los vértices adyacentes
+        // Explorar todos los vï¿½rtices adyacentes
         Para i <- 1 Hasta numeroVertices Con Paso 1 Hacer
             Si matrizAdyacencia[verticeActual, i] = 1 Y NO visitados[i] Entonces
                 // Marcar como visitado y agregar al camino
@@ -229,8 +229,8 @@ Funcion recibirGrafoTexto
     Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
         Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
             Si aristasRestantes > 0 Entonces
-                Escribir "El Vertice número: ", i , " tiene arista con el Vertice número: ", j , "?" 
-                Escribir "Escribe 1 para Sí o 0 para No:"
+                Escribir "El Vertice nï¿½mero: ", i , " tiene arista con el Vertice nï¿½mero: ", j , "?" 
+                Escribir "Escribe 1 para Sï¿½ o 0 para No:"
                 Leer entradaConexion
                 
                 Si entradaConexion = 1 Entonces
@@ -252,10 +252,11 @@ Funcion recibirGrafoTexto
     
 FinFuncion
 
+// Funcion que permite verificar o validar el tipo de grafo, el recibe una matriz de adyacencia
 Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
 	
 	Definir dirigido Como Logico
-	Definir Completo Como Logico
+	Definir completo Como Logico
 	Definir simple 	 Como Logico
 	
 	dirigido := Falso
@@ -270,21 +271,21 @@ Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVe
 			FinSi
 			
 			Si i <> j y matrizAdyacencia[i,j] = 0 Entonces
-				completo = Falso
+				completo := Falso
 			FinSi
 			
 			Si i = j y matrizAdyacencia[i,j] > 0 Entonces
-				simple = Falso
+				simple := Falso
 			FinSi
 			
 		FinPara
 	FinPara
 	
-	Escribir '¿El grafo es dirigido? - Respuesta :' dirigido
+	Escribir 'ï¿½El grafo es dirigido? - Respuesta :' dirigido
 	
-	Escribir '¿El grafo es completo? - Respuesta :' completo
+	Escribir 'ï¿½El grafo es completo? - Respuesta :' completo
 	
-	Escribir '¿El grafo es simple? - Respuesta :' simple
+	Escribir 'ï¿½El grafo es simple? - Respuesta :' simple
 	
 	// TODO terminar la definicion del tipo de grafo
 	tipoGrafo  := 'Definir' 	
@@ -317,23 +318,56 @@ FinFuncion
 
 // Funcion para Grafos con Matriz de Adyacencia
 Funcion grafoMatrizAdyacencia
-	Dimension matrizAdyacencia[100,100]
-	Definir numeroVertices Como Entero
-	Definir tipoGrafo Como Caracter
+    Dimension matrizAdyacencia[100,100]
+    Definir numeroVertices, gradoVertice, gradoGrafo Como Entero
+    Definir tipoGrafo Como Caracter
 	
-	Escribir 'Ingrese numero de vertices'
-	Leer numeroVertices
+    Escribir 'Ingrese numero de vertices'
+    Leer numeroVertices
 	
-	Escribir 'Ingrese matriz de adyacencia'
-	Para i<-1 Hasta numeroVertices Con Paso 1 Hacer
-		Para j<-1 Hasta numeroVertices Con Paso 1 Hacer
-			Leer matrizAdyacencia[i,j]
-		FinPara
-	FinPara
+    Escribir 'Ingrese matriz de adyacencia (solo 0 o 1)'
+    Para i <- 1 Hasta numeroVertices Hacer
+        Para j <- 1 Hasta numeroVertices Hacer
+            Repetir
+                Escribir 'Ingrese el valor para posiciï¿½n [', i, ',', j, '] (0 o 1):'
+                Leer matrizAdyacencia[i,j]
+            Hasta Que matrizAdyacencia[i,j] = 0 o matrizAdyacencia[i,j] = 1
+        FinPara
+    FinPara
 	
-	mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
+    mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
 	
-	tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+    tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+	
+    // Calcular y mostrar los grados de cada vï¿½rtice
+    Escribir "Grados de los vï¿½rtices:"
+    Para i <- 1 Hasta numeroVertices Hacer
+        gradoVertice <- 0
+        Para j <- 1 Hasta numeroVertices Hacer
+            gradoVertice <- gradoVertice + matrizAdyacencia[i,j]
+            // Si hay un lazo, se suma 1 adicional al grado
+            Si i = j Entonces
+                gradoVertice <- gradoVertice + 1
+            FinSi
+        FinPara
+        Escribir "Vï¿½rtice ", i, ": ", gradoVertice
+    FinPara
+	
+    // Calcular y mostrar el grado del grafo
+    gradoGrafo <- 0
+    Para i <- 1 Hasta numeroVertices Hacer
+        gradoVertice <- 0
+        Para j <- 1 Hasta numeroVertices Hacer
+            gradoVertice <- gradoVertice + matrizAdyacencia[i,j]
+            // Si hay un lazo, se suma 1 adicional al grado
+            Si i = j Entonces
+                gradoVertice <- gradoVertice + 1
+            FinSi
+        FinPara
+        // Acumulamos el grado del vï¿½rtice al grado total del grafo
+        gradoGrafo <- gradoGrafo + gradoVertice
+    FinPara
+    Escribir "Grado del grafo: ", gradoGrafo
 	
 FinFuncion
 
