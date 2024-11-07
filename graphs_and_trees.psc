@@ -613,6 +613,8 @@ Funcion recibirGrafoTexto
     Dimension matrizAdyacencia[100,100]
     Definir numeroVertices, numeroAristas, aristasRestantes Como Entero
     Definir tipoGrafo Como Caracter
+	Dimension grados[100]
+	Definir gradoGrafo Como Entero
     
     Para i<-1 Hasta 100 Con Paso 1 Hacer
         Para j<-1 Hasta 100 Con Paso 1 Hacer
@@ -647,6 +649,25 @@ Funcion recibirGrafoTexto
             i <- numeroVertices  // Forzar la salida del ciclo exterior
         FinSi
     FinPara
+	
+	// Calcular y mostrar los grados de los vértices y el grado total del grafo
+    Escribir "Grados de los vértices:"
+    gradoGrafo <- 0
+    Para i <- 1 Hasta numeroVertices Hacer
+        grados[i] <- 0
+        Para j <- 1 Hasta numeroVertices Hacer
+            grados[i] <- grados[i] + matrizAdyacencia[i,j]
+            // Si hay un lazo, se suma 1 adicional al grado
+            Si i = j Entonces
+                grados[i] <- grados[i] + 1
+            FinSi
+        FinPara
+        Escribir "Vértice ", i, ": ", grados[i]
+        gradoGrafo <- gradoGrafo + grados[i]
+    FinPara
+    Escribir "Grado del grafo: ", gradoGrafo
+	
+	
     
     mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
     tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
@@ -660,6 +681,7 @@ Funcion tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVe
 	Definir dirigido Como Logico
 	Definir completo Como Logico
 	Definir simple 	 Como Logico
+	
 	
 	dirigido := Falso
 	completo := Verdadero
