@@ -87,10 +87,6 @@ Funcion grafoMatrizAdyacencia
         gradoVertice <- 0
         Para j <- 1 Hasta numeroVertices Hacer
             gradoVertice <- gradoVertice + matrizAdyacencia[i,j]
-            // Si hay un lazo, se suma 1 adicional al grado
-            Si i = j Entonces
-                gradoVertice <- gradoVertice + 1
-            FinSi
         FinPara
         Escribir "Vértice ", i, ": ", gradoVertice
     FinPara
@@ -101,10 +97,6 @@ Funcion grafoMatrizAdyacencia
         gradoVertice <- 0
         Para j <- 1 Hasta numeroVertices Hacer
             gradoVertice <- gradoVertice + matrizAdyacencia[i,j]
-            // Si hay un lazo, se suma 1 adicional al grado
-            Si i = j Entonces
-                gradoVertice <- gradoVertice + 1
-            FinSi
         FinPara
         // Acumulamos el grado del vértice al grado total del grafo
         gradoGrafo <- gradoGrafo + gradoVertice
