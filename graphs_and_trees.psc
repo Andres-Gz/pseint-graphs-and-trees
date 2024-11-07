@@ -60,26 +60,56 @@ FinFuncion
 
 // Funcion para Grafos con Matriz de Adyacencia
 Funcion grafoMatrizAdyacencia
-	Dimension matrizAdyacencia[100,100]
-	Definir numeroVertices Como Entero
-	Definir tipoGrafo Como Caracter
+    Dimension matrizAdyacencia[100,100]
+    Definir numeroVertices, gradoVertice, gradoGrafo Como Entero
+    Definir tipoGrafo Como Caracter
 	
-	Escribir 'Ingrese numero de vertices'
-	Leer numeroVertices
+    Escribir 'Ingrese numero de vertices'
+    Leer numeroVertices
 	
-	Escribir 'Ingrese matriz de adyacencia (solo 0 o 1)'
+    Escribir 'Ingrese matriz de adyacencia (solo 0 o 1)'
     Para i <- 1 Hasta numeroVertices Hacer
-		Para j <- 1 Hasta  numeroVertices Hacer
-			Repetir
-				Escribir 'Ingrese el valor para posición [', i, ',', j, '] (0 o 1):'
-				Leer matrizAdyacencia[i,j]
-			Hasta Que matrizAdyacencia[i,j] = 0 o matrizAdyacencia[i,j] = 1
-		FinPara
-	FinPara
+        Para j <- 1 Hasta numeroVertices Hacer
+            Repetir
+                Escribir 'Ingrese el valor para posición [', i, ',', j, '] (0 o 1):'
+                Leer matrizAdyacencia[i,j]
+            Hasta Que matrizAdyacencia[i,j] = 0 o matrizAdyacencia[i,j] = 1
+        FinPara
+    FinPara
 	
-	mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
+    mostrarMatrizAdyacencia(matrizAdyacencia, numeroVertices)
 	
-	tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+    tipoGrafo <- validarTipoGrafoMatrizAdyacencia(matrizAdyacencia, numeroVertices, tipoGrafo)
+	
+    // Calcular y mostrar los grados de cada vértice
+    Escribir "Grados de los vértices:"
+    Para i <- 1 Hasta numeroVertices Hacer
+        gradoVertice <- 0
+        Para j <- 1 Hasta numeroVertices Hacer
+            gradoVertice <- gradoVertice + matrizAdyacencia[i,j]
+            // Si hay un lazo, se suma 1 adicional al grado
+            Si i = j Entonces
+                gradoVertice <- gradoVertice + 1
+            FinSi
+        FinPara
+        Escribir "Vértice ", i, ": ", gradoVertice
+    FinPara
+	
+    // Calcular y mostrar el grado del grafo
+    gradoGrafo <- 0
+    Para i <- 1 Hasta numeroVertices Hacer
+        gradoVertice <- 0
+        Para j <- 1 Hasta numeroVertices Hacer
+            gradoVertice <- gradoVertice + matrizAdyacencia[i,j]
+            // Si hay un lazo, se suma 1 adicional al grado
+            Si i = j Entonces
+                gradoVertice <- gradoVertice + 1
+            FinSi
+        FinPara
+        // Acumulamos el grado del vértice al grado total del grafo
+        gradoGrafo <- gradoGrafo + gradoVertice
+    FinPara
+    Escribir "Grado del grafo: ", gradoGrafo
 	
 FinFuncion
 
@@ -163,5 +193,5 @@ Algoritmo graphs_and_trees
 			
 		FinSi
 	FinSi
-
+	
 FinAlgoritmo
